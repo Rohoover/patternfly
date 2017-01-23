@@ -1,5 +1,6 @@
 <div class="drawer-pf hide drawer-pf-notifications-non-clickable">
   <div class="drawer-pf-title">
+    <a class="drawer-pf-toggle-expand"></a>
     <h3 class="text-center">Notifications Drawer</h3>
   </div>
   <div class="panel-group" id="notification-drawer-accordion">
@@ -14,7 +15,7 @@
       </div>
       <div id="fixedCollapseOne" class="panel-collapse collapse in">
         <div class="panel-body">
-          {% include widgets/notification-drawer-notifications.html %}
+          {% include widgets/notification-drawer-notifications.html id="1" %}
         </div>
         <div class="drawer-pf-action">
           <button class="btn btn-link btn-block">Mark All Read</button>
@@ -32,9 +33,9 @@
       </div>
       <div id="fixedCollapseTwo" class="panel-collapse collapse">
         <div class="panel-body">
-          {% include widgets/notification-drawer-notifications.html %}
-          {% include widgets/notification-drawer-notifications.html %}
-          {% include widgets/notification-drawer-notifications.html %}
+          {% include widgets/notification-drawer-notifications.html id="2" %}
+          {% include widgets/notification-drawer-notifications.html id="3" %}
+          {% include widgets/notification-drawer-notifications.html id="4" %}
           <div class="drawer-pf-loading text-center">
             <span class="spinner spinner-xs spinner-inline"></span> Loading More
           </div>
@@ -55,9 +56,9 @@
       </div>
       <div id="fixedCollapseThree" class="panel-collapse collapse">
         <div class="panel-body">
-          {% include widgets/notification-drawer-notifications.html %}
-          {% include widgets/notification-drawer-notifications.html %}
-          {% include widgets/notification-drawer-notifications.html %}
+          {% include widgets/notification-drawer-notifications.html id="5" %}
+          {% include widgets/notification-drawer-notifications.html id="6" %}
+          {% include widgets/notification-drawer-notifications.html id="7" %}
         </div>
         <div class="drawer-pf-action">
           <button class="btn btn-link btn-block">Mark All Read</button>
@@ -88,6 +89,19 @@
         $drawer.addClass('hide');
       }
     });
+    $('.drawer-pf-toggle-expand').click(function() {
+      var $drawer = $('.drawer-pf');
+      var $drawerNotifications = $drawer.find('.drawer-pf-notification');
+
+      if ($drawer.hasClass('drawer-pf-expanded')) {
+        $drawer.removeClass('drawer-pf-expanded');
+        $drawerNotifications.removeClass('expanded-notification');
+      } else {
+        $drawer.addClass('drawer-pf-expanded');
+        $drawerNotifications.addClass('expanded-notification');
+      }
+    });
+
     // Mark All Read
     $('.panel-collapse').each(function (index, panel) {
       var $panel = $(panel);
